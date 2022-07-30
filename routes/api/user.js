@@ -21,7 +21,6 @@ router.post('/',
         ).isLength({ min: 6 })
 ], 
 async (req, res) => {
-    // console.log(req.body);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() }); // format errors output
@@ -33,7 +32,7 @@ async (req, res) => {
         // See if user exists
         let user = await User.findOne({ email });
         if (user) {
-            return res.status(400).json({ errors: [{ msg: 'User already exits'}] });
+            return res.status(400).json({ errors: [{ msg: 'User already exits' }] });
         }
 
         // Get user gravatar
